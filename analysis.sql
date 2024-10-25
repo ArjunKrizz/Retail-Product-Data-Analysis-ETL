@@ -2,8 +2,11 @@
 create database etl;
 use etl;
 
+
 -- description of data types
 desc tb_orders;
+
+
 
 -- coverting the datatype for optimisation(for lesser memory usage)
 ALTER TABLE tb_orders
@@ -23,6 +26,9 @@ MODIFY COLUMN discount DECIMAL(10, 2),
 MODIFY COLUMN sale_price DECIMAL(10, 2),
 MODIFY COLUMN profit DECIMAL(10, 2);
 
+
+
+
 -- find top 10 highest sales generating products
 with highest_revenue as 
 		(
@@ -31,6 +37,9 @@ with highest_revenue as
         )
 select product_id,total_sales from highest_revenue where rk<=10;
 
+
+
+
 -- find top 5 highest selling products in each region
 with cte as (
 			select product_id,region,sum(sale_price) as sales,
@@ -38,6 +47,10 @@ with cte as (
             from tb_orders group by product_id,region
 			)
 select region,product_id,sales from cte where rk<=5;
+
+
+
+
 
 -- find month over month growth comparison for 2022 and 2023 sales 
 with cte as 
@@ -50,6 +63,10 @@ sum(case when year=2022 then sales else 0 end) as sales_2022,
 sum(case when year=2023 then sales else 0 end) as sales_2023 from cte
 group by month;
 
+
+
+
+
 -- for each category which month had highest sales 
 with cte as 
 		(
@@ -59,6 +76,10 @@ with cte as
 		
 		)
 select category,month,sales from cte where rk=1 order by sales desc;
+
+
+
+
 
 -- which sub category had highest growth by profit in 2023 compare to 2022
 with cte as (
@@ -79,6 +100,8 @@ select *
 ,(sales_2023-sales_2022) as growth_margin
 from  cte2
 order by growth_margin desc limit 1;
+
+
 
 
 -- most preffered shipping delivery

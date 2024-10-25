@@ -39,8 +39,7 @@ This project demonstrates an end-to-end ETL (Extract, Transform, Load) pipeline 
 7. **Most Preferred Shipping Mode**  
    ![Preferred Shipping Mode](./Images/image_7.png)
 
-## Images Folder
-All screenshots of query results are saved in the `Images` folder, named sequentially from `image_1.png` to `image_7.png`.
+
 
 ## Conclusion
 This ETL project demonstrates a complete workflow for data processing, from extraction and transformation to analysis, generating valuable business insights on sales trends, product performance, and customer shipping preferences.
